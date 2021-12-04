@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from typing import List
 
 with open('input.txt') as f:
-    res = [i.rstrip() for i in f.readlines()]
+    res:List[str] = [i.rstrip() for i in f.readlines()]
 
 
 @dataclass
@@ -47,18 +47,23 @@ class BingoBoard:
         self.score =  s * self.last_num
 
 def main():
-    draws = [int(i) for i in res[0].split(',')]
+    draws:int = [int(i) for i in res[0].split(',')]
     boards:List[BingoBoard] = []
-    board = []
+    board:int = []
 
-    for i in res[2:]:
-        if i:
+    for i in res[2:]: #Fang ab der 2 Zeile an(ab da beginnen die Boards)
+        if i:#Wenn die Zeile nicht leer ist
             board.append([int(j) for j in i.split()])
+            #Splite die Zeile 22 13 17 11  0  an den Spaces zu [22,13,17,11, 0] und füge sie zu einem Board hinzu
+            #sodass ein 2D Board entsteht
         else:
-            boards.append(BingoBoard(board=board))
-            board = []
+            boards.append(BingoBoard(board))
+            # Wenn Zeile leer ist, dann können wir das 2D Board einer Sammlung von anderen Boards hinzufügen
+            #So entsteht eine Liste aus 2D Boards
+            board = [] # 2D board leer machen
 
-    scores = []
+    scores:List[int] = []
+
     for i in draws:
         for j in boards:
             if j.done:
