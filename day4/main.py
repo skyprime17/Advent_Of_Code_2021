@@ -51,16 +51,12 @@ def main():
     boards:List[BingoBoard] = []
     board:int = []
 
-    for i in res[2:]: #Fang ab der 2 Zeile an(ab da beginnen die Boards)
-        if i:#Wenn die Zeile nicht leer ist
-            board.append([int(j) for j in i.split()])
-            #Splite die Zeile 22 13 17 11  0  an den Spaces zu [22,13,17,11, 0] und füge sie zu einem Board hinzu
-            #sodass ein 2D Board entsteht
+    for line in res[2:]:
+        if line:
+            board.append([int(j) for j in line.split()])
         else:
             boards.append(BingoBoard(board))
-            # Wenn Zeile leer ist, dann können wir das 2D Board einer Sammlung von anderen Boards hinzufügen
-            #So entsteht eine Liste aus 2D Boards
-            board = [] # 2D board leer machen
+            board = []
 
     scores:List[int] = []
 
