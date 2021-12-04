@@ -71,7 +71,7 @@ def main():
                 scores.append(j.score)
 
     print(scores[0])    #first score is the one with the least turns
-    print(scores[-1])   #last score is the one if the most turns
+    print(scores[-1])   #last score is the one with the most turns
 
 if __name__ == '__main__':
     main()
