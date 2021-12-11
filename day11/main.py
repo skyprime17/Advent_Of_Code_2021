@@ -1,3 +1,11 @@
+import os
+from time import sleep
+from colorama import init
+from colorama import Fore, Back, Style
+
+
+init()
+
 with open('input.txt') as f:
     result = [[int(i) for i in x.rstrip()] for x in f.readlines()]
 
@@ -22,15 +30,7 @@ def main():
     for _ in range(100):
         for i in range(len(result)):
             for j in range(len(result[i])):
-                result[i][j] += 1
-                if result[i][j] == 10:
-                    for (dx, dy) in dirs:
-                        ni = dx + i
-                        nj = dy + j
-                        if ni < 0 or nj < 0 or ni > len(result) - 1 or nj > len(result[0]) - 1:
-                            continue
-                        else:
-                            rec(dirs, ni, nj)
+                rec(dirs, i, j)
         for i in range(len(result)):
             for j in range(len(result[i])):
                 if result[i][j] > 9:
@@ -45,32 +45,34 @@ def main2():
     dirs = [(-1, 0), (1, 0), (0, -1), (0, 1),
             (-1, -1), (1, 1), (-1, 1), (1, -1)]
     steps = 0
+    flashes = 0
     while True:
+        os.system('cls')
+        print(Fore.WHITE+f"Steps: {steps}")
+        print(Fore.WHITE+f"Flashes: {flashes}")
+        for line in result:
+            for num in line:
+                if num == 0:
+                    print(Fore.WHITE + str(num), end=" ",flush=True)
+                else:
+                    print(Fore.RED + str(num), end=" ", flush=True)
+            print(flush=True)
+        print(flush=True)
+        sleep(.1)
         if sum(map(sum,result)) == 0:
             break
         for i in range(len(result)):
             for j in range(len(result[i])):
-                result[i][j] += 1
-                if result[i][j] == 10:
-                    for (dx, dy) in dirs:
-                        ni = dx + i
-                        nj = dy + j
-                        if ni < 0 or nj < 0 or ni > len(result) - 1 or nj > len(result[0]) - 1:
-                            continue
-                        else:
-                            rec(dirs, ni, nj)
+                rec(dirs, i, j)
+                            
         for i in range(len(result)):
             for j in range(len(result[i])):
                 if result[i][j] > 9:
-                    result[i][j] = 0      
+                    result[i][j] = 0
+                    flashes +=1
         steps +=1
-
-    print(steps)
-
-
-
 
 
 if __name__ == '__main__':
-    main()
-    #main2()
+    #main()
+    main2()
