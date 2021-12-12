@@ -1,5 +1,5 @@
 from collections import defaultdict
-
+from time import perf_counter
 with open('input.txt') as f:
     result = [i.strip() for i in f.readlines()]
 
@@ -22,12 +22,13 @@ def find_path_to_end2(pos, visited, xs, end):
         end.append(visited)
         return
 
+    lowercase_list = [i for i in visited if i.islower()]
+    # check if i already have 2 lowercase caves in visited
+    if len(lowercase_list) - len(set(lowercase_list)) == 2:
+        return
+
     for p in xs[pos]:
         if p == 'start':
-            continue
-        lowercase_list = [i for i in visited if i.islower()]
-        # check if i already have 2 lowercase caves in visited
-        if len(lowercase_list) - len(set(lowercase_list)) == 2:
             continue
         cached_path = visited.copy()
         cached_path.append(p)
@@ -42,7 +43,7 @@ def main():
         xs[j].append(x)
 
     visited = ["start"]
-    #12.1
+    12.1
     end_ = []
     find_path_to_end("start", visited, xs, end_)
     print("Part 1", len(end_))
