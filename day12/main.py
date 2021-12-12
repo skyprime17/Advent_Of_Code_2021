@@ -43,7 +43,7 @@ def main():
         xs[j].append(x)
 
     visited = ["start"]
-    12.1
+    #12.1
     end_ = []
     find_path_to_end("start", visited, xs, end_)
     print("Part 1", len(end_))
