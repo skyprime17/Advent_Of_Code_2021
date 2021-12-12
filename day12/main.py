@@ -26,6 +26,7 @@ def find_path_to_end2(pos, visited, xs, end):
         if p == 'start':
             continue
         lowercase_list = [i for i in visited if i.islower()]
+        # check if i already have 2 lowercase caves in visited
         if len(lowercase_list) - len(set(lowercase_list)) == 2:
             continue
         cached_path = visited.copy()
