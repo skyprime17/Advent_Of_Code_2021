@@ -1,5 +1,5 @@
 from collections import defaultdict
-from time import perf_counter
+
 with open('input.txt') as f:
     result = [i.strip() for i in f.readlines()]
 
