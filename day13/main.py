@@ -23,7 +23,6 @@ def main():
             y_fold = True
         else:
             x_fold = True
-
         for idx_, (x, y) in enumerate(dots):
             # example: fold along y_fold=7 and y=10
             # if y > y_fold then y = y_fold -abs(y-y_fold)
