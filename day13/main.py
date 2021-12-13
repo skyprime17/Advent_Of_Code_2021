@@ -23,8 +23,9 @@ def main():
         if instr == 'y':
             y_fold = dot
             for idx, (x,y) in enumerate(dots):
-                #fold along y_fold=7
-                #if y > y_fold then y = y_fold - abs(y- y_fold)
+                #example: fold along y_fold=7 and y=10
+                #if y > y_fold then y = y_fold -abs(y-y_fold)
+                #True -> y =7-(3) -> y=4
                 if y > y_fold:
                     new_y = y_fold - abs(y- y_fold)
                     dots[idx] = (x,new_y)
